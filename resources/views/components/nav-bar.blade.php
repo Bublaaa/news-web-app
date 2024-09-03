@@ -1,6 +1,7 @@
 <nav class="fixed top-0 right-0 w-full bg-white border-gray-200 dark:bg-gray-900 z-50">
     <div class="max-w-screen flex flex-wrap items-center justify-between mx-auto p-5">
         @auth
+        <!-- Open sidebar toggle button -->
         <button data-drawer-target="logo-sidebar" data-drawer-toggle="logo-sidebar" aria-controls="logo-sidebar"
             type="button"
             class="inline-flex items-center p-2 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
@@ -13,13 +14,16 @@
             </svg>
         </button>
         @endauth
+        <!-- Logo -->
         <a class="flex items-center space-x-3 ">
             <img src="https://flowbite.com/docs/images/logo.svg" class="h-8" alt="Flowbite Logo" />
         </a>
         <div class="flex flex-row gap-5">
+            @include('./components/dark-mode-toggle-button')
+
             @auth
             <div class="flex items-center justify-between">
-
+                <!-- User Info -->
                 <div class="flex items-center">
                     <div class="flex items-center ms-3">
                         <div>

@@ -3,7 +3,7 @@
 @section('content')
 <div class="form-container">
     <div class="flex flex-row max-w-2xl w-full md:mx-auto mx-4 bg-white rounded-2xl shadow-md dark:bg-gray-800 ">
-        <form method="POST" action="{{ route('register') }}" class="form md:w-3/5 w-full">
+        <form method="POST" action="{{ route('register') }}" class="form w-full">
             <!-- Header -->
             <div class="flex flex-col">
                 <h3 class="text-3xl font-bold dark:text-white">
