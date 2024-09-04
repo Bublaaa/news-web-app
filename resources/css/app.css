@@ -53,3 +53,11 @@
 .sidebar-link {
     @apply flex items-center p-3 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700
 }
+
+.category {
+    @apply block items-start px-3 py-2 font-medium text-gray-900 md:rounded-lg rounded-full dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700
+}
+
+.category-container{
+    @apply flex md:flex-col flex-row rounded-lg md:p-5
+}
