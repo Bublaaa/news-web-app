@@ -7,7 +7,7 @@ use App\Http\Controllers\AdminController;
 
 
 Route::get('/', function () {
-    return view('./layouts/public-news-page');
+    return view('./layouts/news');
 });
 
 Auth::routes();

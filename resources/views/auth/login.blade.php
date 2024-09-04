@@ -6,7 +6,7 @@
             <!-- Header -->
             <div class=" flex flex-col">
                 <h3 class="heading3">
-                    //signIn
+                    Sign In
                 </h3>
                 <div class="flex flex-row gap-2">
                     <p class="paragraph">
