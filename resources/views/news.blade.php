@@ -1,6 +1,6 @@
 @extends('layouts.public-news-page')
 @section('content')
-<div class="flex md:flex-row flex-col mt-20 p-5 gap-5">
+<div class="flex md:flex-row flex-col gap-5">
     <!-- Side bar -->
     <div class="block md:flex-col flex-row rounded-lg md:bg-white md:dark:bg-gray-800 md:p-5 md:shadow-lg h-fit">
         <h3 class="heading3 p-2 md:block hidden">

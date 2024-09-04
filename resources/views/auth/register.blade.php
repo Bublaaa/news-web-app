@@ -8,7 +8,7 @@
                 <h3 class="text-3xl font-bold dark:text-white">
                     Get started
                 </h3>
-                <div class="flex flex-row gap-2">
+                <div class="flex md:flex-row flex-col gap-2">
                     <p class="text-gray-500 dark:text-gray-400">
                         already have an account?
                     </p>

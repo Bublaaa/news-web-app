@@ -8,7 +8,7 @@
                 <h3 class="heading3">
                     Sign In
                 </h3>
-                <div class="flex flex-row gap-2">
+                <div class="flex md:flex-row flex-col gap-2">
                     <p class="paragraph">
                         don't have an account yet?
                     </p>

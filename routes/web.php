@@ -7,7 +7,7 @@ use App\Http\Controllers\AdminController;
 
 
 Route::get('/', function () {
-    return view('./layouts/news');
+    return view('./news');
 });
 
 Auth::routes();
@@ -15,6 +15,10 @@ Auth::routes();
 // Admin Routes
 Route::middleware(['auth', 'role.redirect:admin'])->group(function () {
     Route::get('/admin-dashboard', [AdminController::class, 'index'])->name('admin.dashboard');
+    Route::get('/publish-request', [AdminController::class, 'showPublishRequests'])->name('admin.publish-request');
+    Route::get('/users', [AdminController::class, 'showUsers'])->name('admin.users');
+    Route::get('/articles', [AdminController::class, 'showArticles'])->name('admin.articles');
+
 });
 
 // Author Routes
