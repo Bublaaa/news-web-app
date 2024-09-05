@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Category;
+
 
 class AdminController extends Controller
 {
@@ -16,7 +18,8 @@ class AdminController extends Controller
         return view('users');
     }
     public function showArticles(){
-        return view('articles');
+        $availableCategories = Category::all();
+        return view('./article/articles')->with('availableCategories', $availableCategories);
     }
     
 }

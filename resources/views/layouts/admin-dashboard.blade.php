@@ -4,11 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    @vite('resources/css/app.css')
+    @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-
-<body class="bg-white dark:bg-gray-700">
+<body class="bg-white dark:bg-gray-700 page-sidebar">
     @include('./components/nav-bar')
     <div class="flex flex-row mt-20 p-5 gap-5">
         <!-- Sidebar -->
@@ -59,81 +58,13 @@
                     </li>
                 </ul>
             </div>
-
         </aside>
         <!-- Content -->
-        <main id="main-content" class="w-full">
+        <main id="main-content" class="w-full" data-content-id="{{ request()->route()->getName() }}">
             @yield('content')
         </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.5.1/dist/flowbite.min.js"></script>
-    <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        let currentUrl = window.location.pathname;
-
-        function loadContent(url) {
-            if (url === currentUrl) {
-                return; // Do nothing if the content is already loaded
-            }
-
-            fetch(url)
-                .then(response => {
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! Status: ${response.status}`);
-                    }
-                    return response.text();
-                })
-                .then(html => {
-                    let tempDom = document.createElement('div');
-                    tempDom.innerHTML = html;
-                    let newContent = tempDom.querySelector('#main-content').innerHTML;
-                    document.querySelector('#main-content').innerHTML = newContent;
-
-                    if (typeof flowbite !== 'undefined') {
-                        flowbite.init(); // Re-initialize Flowbite components
-                    }
-
-                    history.pushState(null, '', url);
-                    console.log(url);
-
-                    currentUrl = url;
-                    console.log(currentUrl);
-
-                    // Reattach event listeners
-                    attachListeners();
-                })
-                .catch(error => {
-                    console.error('There was a problem with the AJAX request:', error);
-                });
-        }
-
-        function attachListeners() {
-            document.querySelectorAll('.ajax-link').forEach(link => {
-                link.removeEventListener('click',
-                    ajaxLinkHandler); // Remove any previous event listeners
-                link.addEventListener('click', ajaxLinkHandler); // Attach new event listeners
-            });
-        }
-
-        function ajaxLinkHandler(event) {
-            event.preventDefault(); // Prevent the default link behavior
-            const url = event.currentTarget.getAttribute('href');
-            console.log("ajax-link pressed");
-            loadContent(url);
-        }
-
-        function handlePopState() {
-            window.addEventListener('popstate', function(event) {
-                const url = location.pathname;
-                loadContent(url);
-            });
-        }
-
-        // Initial setup
-        attachListeners();
-        handlePopState();
-    });
-    </script>
 </body>
 
 </html>

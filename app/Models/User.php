@@ -21,6 +21,7 @@ class User extends Authenticatable
         'email',
         'role',
         'password',
+        'image_url',
     ];
 
     /**
@@ -45,5 +46,22 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+      // Define the relationship with Articles
+    public function articles()
+    {
+        return $this->hasMany(Article::class);
+    }
+
+    // Define the relationship with ArticleRequests
+    public function articleRequests()
+    {
+        return $this->hasMany(ArticleRequest::class);
+    }
+
+    // Define the relationship with Preferences
+    public function preferences()
+    {
+        return $this->hasMany(Preference::class);
     }
 }

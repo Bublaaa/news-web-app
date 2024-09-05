@@ -18,7 +18,6 @@
         </a>
         <div class="flex flex-row gap-5">
             @include('./components/dark-mode-toggle-button')
-
             @auth
             <div class="flex items-center justify-between">
                 <!-- User Info -->
@@ -77,8 +76,7 @@
             @else
             <!-- Login Button -->
             <div class="flex md:order-2 space-x-3 md:space-x-0">
-                <a type="button" href="{{ route('login') }}"
-                    class="ajax-link text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Sign
+                <a type="button" href="{{ route('login') }}" class="ajax-link primary-button">Sign
                     In </a>
             </div>
             <!-- Toggle Button -->
