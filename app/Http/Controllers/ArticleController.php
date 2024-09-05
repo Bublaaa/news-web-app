@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Article;
 use Illuminate\Http\Request;
+use App\Models\Article;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ArticleController extends Controller
 {
@@ -22,14 +24,33 @@ class ArticleController extends Controller
     {
         //
     }
-
-    /**
-     * Store a newly created resource in storage.
-     */
+    
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'content' => 'required|string',
+        ]);
+        $imageUrl = null;
+        if ($request->hasFile('banner_image')) {
+            $image = $request->file('banner_image');
+            $imagePath = $image->store('public/images');
+            $imageUrl = Storage::url($imagePath);
+        }
+
+        $article = new Article();
+        $article->user_id = Auth::id();
+        $article->title = $request->input('title');
+        $article->content = $request->input('content');
+        $article->status = 'draft';
+        $article->image_url = $imageUrl;
+        $article->views_count = 0;
+
+        $article->save();
+
+        return redirect()->back()->with('success', 'Article created successfully.');
     }
+
 
     /**
      * Display the specified resource.

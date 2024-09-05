@@ -7,15 +7,11 @@
             Category
         </h3>
         <ul class="flex md:flex-col flex-row overflow-x-scroll no-scrollbar space-x-3 md:space-x-0 md:space-y-3">
+            @foreach($categories as $category)
             <li class="category">
-                <a href="#">category 1</a>
+                <a href="#">{{ $category->name }}</a>
             </li>
-            <li class="category">
-                <a href="#">category 2</a>
-            </li>
-            <li class="category">
-                <a href="#">category 3</a>
-            </li>
+            @endforeach
         </ul>
     </div>
     <div>

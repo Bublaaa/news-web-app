@@ -3,19 +3,15 @@ export function openEditModal(categoryId, categoryName) {
     const deleteForm = document.getElementById('deleteCategoryForm');
     const deleteCategoryNameInput = document.getElementById('confirmCategoryName');
     
+    deleteForm.classList.add('hidden')
     editModal.classList.remove('hidden');
     document.getElementById('editCategoryForm').action = '/categories/' + categoryId;
     document.getElementById('categoryId').value = categoryId;
     document.getElementById('categoryName').value = categoryName;
     document.getElementById('deleteCategoryId').value = categoryId;
     
-    deleteCategoryNameInput.value = ''; // Clear input
+    deleteCategoryNameInput.value = ''; 
     document.getElementById('confirmCategoryNameLabel').textContent = 'Type "' + categoryName +'" to confirm deletion';
-    
-    deleteForm.classList.add('hidden')
-    // document.getElementById('deleteCategoryButton').addEventListener('click', function() {
-    //     deleteForm.classList.remove('hidden');
-    // });
 }
 
 export function openDeleteForm() {
