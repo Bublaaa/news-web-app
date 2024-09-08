@@ -21,13 +21,14 @@ class LoginController extends Controller
         $role = Auth::user()->role;
 
         if ($role === 'admin') {
-            return '/admin-dashboard';
+            return '/admin';  // Redirect to /admin
         } elseif ($role === 'author') {
-            return '/author-dashboard';
+            return '/author';  // Redirect to /author
         }
 
         return '/'; // Default redirection for unrecognized roles
     }
+
 
     /**
      * Create a new controller instance.

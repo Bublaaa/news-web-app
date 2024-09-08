@@ -2,7 +2,7 @@
 @section('content')
 <h2 class="heading2">Manages Your Articles</h2>
 <div class="flex flex-row gap-5">
-    <div class="grid w-fit md:grid-cols-2 grid-cols-1 gap-5 pt-5">
+    <div class="grid w-full md:grid-cols-3 grid-cols-1 gap-5 pt-5">
         @foreach($userArticles as $userArticle)
         <div class="w-full rounded-lg overflow-hidden shadow-lg">
             <img class="w-full h-32 object-cover rounded-lg" src="{{ $userArticle->image_url }}" alt="News Image">
@@ -25,7 +25,7 @@
         @endforeach
     </div>
     <!-- Create New Articlels -->
-    <div class="w-full flex flex-col rounded-lg shadow-sm  w-full gap-5">
+    <div class="w-fit flex flex-col rounded-lg shadow-sm  gap-5">
         <div class="flex flex-col gap-5 bg-white dark:bg-gray-800 rounded-lg shadow-md p-5">
             <h4 class="heading4">
                 Create new article

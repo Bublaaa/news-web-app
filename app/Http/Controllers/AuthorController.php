@@ -30,4 +30,12 @@ class AuthorController extends Controller
     public function createNewArticles(){
         return view('./author/create-new-article');
     }
+
+    public function showPublishRequest() {
+        return view('./author/author-publish-request');
+    }
+    
+    public function showAccountDetails(){
+        return view('./author/author-account-setting');
+    }
 }

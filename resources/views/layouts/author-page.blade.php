@@ -31,7 +31,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="" class="sidebar-link ajax-link group">
+                        <a href="{{ route('author.publish.request') }}" class="sidebar-link ajax-link group">
                             <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                                 <path
@@ -44,7 +44,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="" class="sidebar-link ajax-link group">
+                        <a href="{{ route('author.account.setting') }}" class="sidebar-link ajax-link group">
                             <svg class="w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white"
                                 xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                                 <path fill-rule="evenodd"
@@ -53,7 +53,7 @@
                                 <path
                                     d="M5.082 14.254a8.287 8.287 0 0 0-1.308 5.135 9.687 9.687 0 0 1-1.764-.44l-.115-.04a.563.563 0 0 1-.373-.487l-.01-.121a3.75 3.75 0 0 1 3.57-4.047ZM20.226 19.389a8.287 8.287 0 0 0-1.308-5.135 3.75 3.75 0 0 1 3.57 4.047l-.01.121a.563.563 0 0 1-.373.486l-.115.04c-.567.2-1.156.349-1.764.441Z" />
                             </svg>
-                            <span class="ml-2">Users</span>
+                            <span class="ml-2">Account Setting</span>
                         </a>
                     </li>
                 </ul>
