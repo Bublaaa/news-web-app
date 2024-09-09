@@ -26,7 +26,8 @@ class ArticleController extends Controller
     }
     
     public function store(Request $request)
-    {
+    {   
+        // dd($request);
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
@@ -34,7 +35,7 @@ class ArticleController extends Controller
         $imageUrl = null;
         if ($request->hasFile('banner_image')) {
             $image = $request->file('banner_image');
-            $imagePath = $image->store('public/images');
+            $imagePath = $image->store('public/images/article');
             $imageUrl = Storage::url($imagePath);
         }
 

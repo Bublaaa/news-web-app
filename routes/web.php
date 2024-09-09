@@ -7,7 +7,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\LandingPageController;
-
+use App\Http\Controllers\UserController;
 
 Route::get('/', [LandingPageController::class, 'showNews']);
 
@@ -30,4 +30,5 @@ Route::middleware(['auth', 'role.redirect:author'])->prefix('author')->group(fun
     Route::get('/publish-request', [AuthorController::class, 'showPublishRequest'])->name('author.publish.request');
     Route::get('/account', [AuthorController::class, 'showAccountDetails'])->name('author.account.setting');
     Route::resource('articles', ArticleController::class);
+    Route::resource('users', UserController::class);
 });

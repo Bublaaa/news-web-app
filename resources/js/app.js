@@ -1,7 +1,7 @@
 // import './bootstrap';
 
-// import './admin-dashboard';
-// import './author-dashboard';
+import './admin-dashboard';
+import './author-dashboard';
 document.addEventListener('DOMContentLoaded', function() {
     let currentUrl = window.location.pathname;
 

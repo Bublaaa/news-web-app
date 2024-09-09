@@ -28,7 +28,7 @@ class AuthorController extends Controller
     }
 
     public function createNewArticles(){
-        return view('./author/create-new-article');
+        return view('./author/author-new-article');
     }
 
     public function showPublishRequest() {
@@ -36,6 +36,13 @@ class AuthorController extends Controller
     }
     
     public function showAccountDetails(){
-        return view('./author/author-account-setting');
+        $userDetail = Auth::user();
+        $publishedCount = Article::where('user_id', $userDetail->id)
+            ->where('status', 'published')
+            ->count();
+        return view('./author/author-account-setting')->with([
+            'userDetail' => $userDetail,
+            'publishedCount' => $publishedCount
+        ]);
     }
 }

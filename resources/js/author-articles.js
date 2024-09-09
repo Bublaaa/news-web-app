@@ -4,7 +4,10 @@ export function attachEventListener() {
     const saveButton = document.getElementById('saveButton');
     const titleInput = document.getElementById('titleInput');
     const contentInput = document.getElementById('contentInput');
-
+    console.log(titleElement);
+    console.log(contentElement);
+    console.log(saveButton);
+    console.log(contentInput);
     // This function will update the hidden inputs when the form is submitted
     if (saveButton) {
         saveButton.addEventListener('click', function(event) {
