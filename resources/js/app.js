@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => {
                 console.error('There was a problem with the AJAX request:', error);
-            });
+        });
     }
 
     // Function to attach event listeners

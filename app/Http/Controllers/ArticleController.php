@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Article;
+use App\Models\Article_Version;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
 
@@ -27,11 +28,12 @@ class ArticleController extends Controller
     
     public function store(Request $request)
     {   
-        // dd($request);
+        // request validation
         $request->validate([
             'title' => 'required|string|max:255',
             'content' => 'required|string',
         ]);
+        // image url handler
         $imageUrl = null;
         if ($request->hasFile('banner_image')) {
             $image = $request->file('banner_image');
@@ -39,17 +41,29 @@ class ArticleController extends Controller
             $imageUrl = Storage::url($imagePath);
         }
 
-        $article = new Article();
-        $article->user_id = Auth::id();
-        $article->title = $request->input('title');
-        $article->content = $request->input('content');
-        $article->status = 'draft';
-        $article->image_url = $imageUrl;
-        $article->views_count = 0;
+        $newArticle = Article::create([
+            'user_id' => Auth::id(),
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),
+            'status' => 'draft',
+            'image_url' => $imageUrl,
+            'views_count' => 0
+        ]);
+        // $article = new Article();
+        // $article->user_id = Auth::id();
+        // $article->title = $request->input('title');
+        // $article->content = $request->input('content');
+        // $article->status = 'draft';
+        // $article->image_url = $imageUrl;
+        // $article->views_count = 0;
 
-        $article->save();
-
-        return redirect()->back()->with('success', 'Article created successfully.');
+        // $article->save();
+        if($newArticle){
+            return redirect()->back()->with('success', 'Article created successfully.');
+        }
+        else {
+             return redirect()->back()->with('error', 'Failed to create article.');
+        }
     }
 
 
@@ -82,6 +96,6 @@ class ArticleController extends Controller
      */
     public function destroy(Article $article)
     {
-        //
+        dd($article);
     }
 }
