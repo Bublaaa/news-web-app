@@ -64,8 +64,7 @@ class UserController extends Controller
         $user = User::findOrFail($id);
 
         $imageUrl = null;
-        $imageUrl = $user->image_url; // Get current image URL from the user record
-
+        $imageUrl = str_replace('/storage', 'public', $user->image_url);
         // Check if a new image is uploaded
         if ($request->hasFile('user_image')) {
             // Delete the existing image if it exists

@@ -99,7 +99,6 @@
                         <input id="dropzone-file" type="file" name="user_image" class="hidden" />
                     </label>
                 </div>
-
                 <!-- Submit Button -->
                 <div class="flex gap-5">
                     <button type="submit" id="saveButton" class="primary-button">Save Changes</button>

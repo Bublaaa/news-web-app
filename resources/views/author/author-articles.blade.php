@@ -9,36 +9,39 @@
             <!-- Artcile Cards -->
             <div class="grid w-full md:grid-cols-2 grid-cols-1 gap-5 pt-5">
                 @foreach($userArticles as $userArticle)
-                <div class="w-full rounded-lg overflow-hidden shadow-lg">
-                    <img class="w-full h-32 object-cover rounded-lg" src="{{ $userArticle->image_url }}"
-                        alt="News Image">
-                    <div class="px-6 py-4">
-                        <span
-                            class="inline-block bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Technology</span>
-                        <h3 class="heading3 my-2">{{ $userArticle->title }}</h3>
-                        <p class="paragraph line-clamp-2">
-                            {{ $userArticle->content }}
-                        </p>
-                    </div>
-                    <div class="px-6 py-4 flex flex-row justify-between">
-                        <div class="flex flex-row">
-                            <img class="w-10 h-10 rounded-full mr-4" src="https://via.placeholder.com/400x200"
-                                alt="Author Image">
-                            <div class="text-sm">
-                                <h6 class="heading6 leading-none">{{ $user->name }}</h6>
-                                <p class="paragraph">
-                                    {{ \Carbon\Carbon::parse($userArticle->created_at)->format('M j Y') }}
-                                </p>
+                <a href="{{ route('author.article.details', ['id' => $userArticle->id]) }}" class="ajax-link">
+                    <div class="w-full rounded-lg overflow-hidden shadow-lg"
+                        data-href="/author/article/{{ $userArticle->id }}">
+                        <img class="w-full h-32 object-cover rounded-lg" src="{{ $userArticle->image_url }}"
+                            alt="News Image">
+                        <div class="px-6 py-4">
+                            <span
+                                class="inline-block bg-blue-200 text-blue-800 text-xs font-semibold mr-2 px-2.5 py-0.5 rounded">Technology</span>
+                            <h3 class="heading3 my-2">{{ $userArticle->title }}</h3>
+                            <p class="paragraph line-clamp-2">
+                                {{ $userArticle->content }}
+                            </p>
+                        </div>
+                        <div class="px-6 py-4 flex flex-row justify-between">
+                            <div class="flex flex-row">
+                                <img class="w-10 h-10 rounded-full mr-4 object-cover" src="{{ $user->image_url }}"
+                                    alt="Author Image">
+                                <div class="text-sm">
+                                    <h6 class="heading6 leading-none">{{ $user->name }}</h6>
+                                    <p class="paragraph">
+                                        {{ \Carbon\Carbon::parse($userArticle->created_at)->format('M j Y') }}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex flex-col">
+                                <span
+                                    class="inline-block mt-2 bg-gray-200 text-gray-800 text-xs font-semibold mr-2 px-3 py-1.5 rounded">
+                                    {{ ucwords($userArticle->status) }}
+                                </span>
                             </div>
                         </div>
-                        <div class="flex flex-col">
-                            <span
-                                class="inline-block mt-2 bg-gray-200 text-gray-800 text-xs font-semibold mr-2 px-3 py-1.5 rounded">
-                                {{ ucwords($userArticle->status) }}
-                            </span>
-                        </div>
                     </div>
-                </div>
+                </a>
                 @endforeach
             </div>
             <!-- Pagination -->

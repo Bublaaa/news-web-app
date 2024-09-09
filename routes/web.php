@@ -29,6 +29,7 @@ Route::middleware(['auth', 'role.redirect:author'])->prefix('author')->group(fun
     Route::get('/author-new-articles', [AuthorController::class, 'createNewArticles'])->name('author.new.articles');
     Route::get('/publish-request', [AuthorController::class, 'showPublishRequest'])->name('author.publish.request');
     Route::get('/account', [AuthorController::class, 'showAccountDetails'])->name('author.account.setting');
+    Route::get('/article/{id}', [AuthorController::class, 'showArticleDetails'])->name('author.article.details');
     Route::resource('articles', ArticleController::class);
     Route::resource('users', UserController::class);
 });
