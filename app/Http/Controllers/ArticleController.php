@@ -94,8 +94,24 @@ class ArticleController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Article $article)
+    public function destroy(Article $article, Request $request)
     {
-        dd($article);
+        // check articleId
+        // dd($article->id == $request->confirm_id);
+        if($article->id == $request->confirm_id){
+            if ($article->image_url) {
+                $imageUrl = str_replace('/storage', 'public', $article->image_url);
+                // Delete the image from the storage
+                if ($imageUrl && Storage::exists($imageUrl)) {
+                    Storage::delete($imageUrl);
+                }
+            }
+            // Delete the article from the database
+            $article->delete();
+            return redirect()->route('author.articles')->with('success', 'Article and associated image deleted successfully.');
+        }
+        else {
+            return redirect()->route('author.articles')->with('error', 'Confirmation ID is not match.');
+        }
     }
 }

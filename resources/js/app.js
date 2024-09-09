@@ -4,7 +4,6 @@ import './admin-dashboard';
 import './author-dashboard';
 document.addEventListener('DOMContentLoaded', function() {
     let currentUrl = window.location.pathname;
-
     // Function to load content via AJAX
     function loadContent(url) {
         if (url === currentUrl) {
@@ -56,6 +55,7 @@ document.addEventListener('DOMContentLoaded', function() {
     function handlePopState() {
         window.addEventListener('popstate', function(event) {
             const url = location.pathname; // Get the current URL from the browser
+            console.log(url);
             loadContent(url); // Load content based on the URL
         });
     }
