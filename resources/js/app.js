@@ -1,3 +1,13 @@
+// Debounce function to limit how often a function can run
+function debounce(func, wait = 100) {
+    let timeout;
+    return function (...args) {
+        const context = this;
+        clearTimeout(timeout);
+        timeout = setTimeout(() => func.apply(context, args), wait);
+    };
+}
+
 // import './bootstrap';
 
 import './admin-dashboard';
@@ -29,7 +39,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
 
                 // Update the current URL
-                history.pushState(null, '', url);
+                // history.pushState(null, '', url);
+                debouncedPushState(url);
+
                 currentUrl = url;
 
                 // Reattach event listeners for newly loaded content
@@ -50,6 +62,10 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         });
     }
+    // Debounced pushState to avoid flooding the browser
+    const debouncedPushState = debounce((url) => {
+        history.pushState(null, '', url);
+    }, 200);
 
     // Handle browser back/forward buttons
     function handlePopState() {
