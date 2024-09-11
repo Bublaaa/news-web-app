@@ -28,6 +28,7 @@ class ArticleController extends Controller
     
     public function store(Request $request)
     {   
+        // dd($request);
         // request validation
         $request->validate([
             'title' => 'required|string|max:255',
@@ -59,6 +60,12 @@ class ArticleController extends Controller
 
         // $article->save();
         if($newArticle){
+            $articleVersion = Article_Version::create([
+                'article_id' => $newArticle->id,
+                'title' => $newArticle->title,
+                'content' => $newArticle->content,
+                'version_number' => 1,
+            ]);
             return redirect()->back()->with('success', 'Article created successfully.');
         }
         else {

@@ -8,18 +8,18 @@ function debounce(func, wait = 100) {
     };
 }
 
-// import './bootstrap';
-
+// Main script
 import './admin-dashboard';
 import './author-dashboard';
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded', function () {
     let currentUrl = window.location.pathname;
+
     // Function to load content via AJAX
     function loadContent(url) {
         if (url === currentUrl) {
             return; // Do nothing if the content is already loaded
         }
-        
+
         fetch(url)
             .then(response => response.text())
             .then(html => {
@@ -38,10 +38,8 @@ document.addEventListener('DOMContentLoaded', function() {
                     flowbite.init(); // Re-initialize Flowbite components
                 }
 
-                // Update the current URL
-                // history.pushState(null, '', url);
+                // Update the current URL using the debounced function
                 debouncedPushState(url);
-
                 currentUrl = url;
 
                 // Reattach event listeners for newly loaded content
@@ -49,29 +47,29 @@ document.addEventListener('DOMContentLoaded', function() {
             })
             .catch(error => {
                 console.error('There was a problem with the AJAX request:', error);
-        });
+            });
     }
 
     // Function to attach event listeners
     function attachListeners() {
         document.querySelectorAll('.ajax-link').forEach(link => {
-            link.addEventListener('click', function(event) {
+            link.addEventListener('click', function (event) {
                 event.preventDefault(); // Prevent the default link behavior
                 const url = this.getAttribute('href');
                 loadContent(url); // Call the loadContent function
             });
         });
     }
+
     // Debounced pushState to avoid flooding the browser
     const debouncedPushState = debounce((url) => {
         history.pushState(null, '', url);
-    }, 200);
+    }, 200); // Debounce to only allow one pushState every 200ms
 
     // Handle browser back/forward buttons
     function handlePopState() {
-        window.addEventListener('popstate', function(event) {
+        window.addEventListener('popstate', function (event) {
             const url = location.pathname; // Get the current URL from the browser
-            console.log(url);
             loadContent(url); // Load content based on the URL
         });
     }

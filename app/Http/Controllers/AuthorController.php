@@ -7,6 +7,8 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
 use App\Models\Preference;
 use App\Models\Article;
+use App\Models\Article_Request;
+use App\Models\Article_Version;
 
 class AuthorController extends Controller
 {
@@ -50,11 +52,19 @@ class AuthorController extends Controller
     }
 
     public function showArticleDetails(String $id) {
+        $latestVersion = Article_Version::where('article_id', $id)
+            ->orderBy('version_number', 'desc')
+            ->first();
+        $versionControl = Article_Version::where('article_id',$id)
+            ->orderBy('version_number', 'desc')
+            ->get();
         $userDetail = Auth::user();
         $articleDetail = Article::findOrFail($id);
         return view('author.author-article-detail') -> with([
             'articleDetail' => $articleDetail,
             'userDetail' => $userDetail,
+            'latestVersion' => $latestVersion,
+            'versionControl' => $versionControl,
         ]);
     }
 }

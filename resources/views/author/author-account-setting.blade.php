@@ -69,14 +69,14 @@
                 <div class="flex flex-col gap-2">
                     <label for="fullname" class="form-label">Full Name</label>
                     <input type="text" id="fullname" name="fullname" value="{{ old('fullname', $userDetail->name) }}"
-                        class="form-text-input" required>
+                        class="form-text-input" required autocomplete="fullname">
                 </div>
 
                 <!-- Email Input -->
                 <div class="flex flex-col gap-2">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" id="email" name="email" value="{{ old('email', $userDetail->email) }}"
-                        class="form-text-input" required>
+                        class="form-text-input" required autocomplete="email">
                 </div>
 
                 <!-- Image Upload -->
@@ -96,7 +96,8 @@
                             <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)
                             </p>
                         </div>
-                        <input id="dropzone-file" type="file" name="user_image" class="hidden" />
+                        <input id="dropzone-file" type="file" name="user_image" class="hidden"
+                            autocomplete="user_image" />
                     </label>
                 </div>
                 <!-- Submit Button -->

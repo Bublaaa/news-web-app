@@ -8,6 +8,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\LandingPageController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\ArticleRequestController;
 
 Route::get('/', [LandingPageController::class, 'showNews']);
 
@@ -31,5 +32,6 @@ Route::middleware(['auth', 'role.redirect:author'])->prefix('author')->group(fun
     Route::get('/account', [AuthorController::class, 'showAccountDetails'])->name('author.account.setting');
     Route::get('/article/{id}', [AuthorController::class, 'showArticleDetails'])->name('author.article.details');
     Route::resource('articles', ArticleController::class);
+    Route::resource('article-request', ArticleRequestController::class);
     Route::resource('users', UserController::class);
 });

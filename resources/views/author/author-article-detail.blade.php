@@ -17,7 +17,7 @@
         </div>
         <div class="inline-flex flex-col w-fit px-6 py-3 gap-2 rounded-lg shadow-lg dark:bg-gray-800">
             <p class="paragraph">Version</p>
-            <h6 class="heading6">{{ ucwords($articleDetail->status) }}</h6>
+            <h6 class="heading6">v.{{ ucwords($latestVersion) }}</h6>
         </div>
     </div>
     <div class="flex flex-row gap-5 w-full">
@@ -90,9 +90,12 @@
                     </h4>
                 </div>
                 <p class="paragraph">Send your draft article for admin to review</p>
-                <a href="{{ route('author.new.articles') }}" class="primary-button flex-wrap ajax-link">
-                    <span class="">Send</span>
-                </a>
+                <form action="{{ route('article-request.store') }}" method="POST">
+                    @csrf
+                    <!-- Assuming these hidden inputs are necessary -->
+                    <input type="text" hidden name="article_id" value="{{ $articleDetail->id }}">
+                    <button type="submit" class="primary-button">Send</button>
+                </form>
             </div>
             <div class="flex flex-col gap-5 bg-white dark:bg-gray-800 rounded-lg shadow-md p-5">
                 <h4 class="heading4">
